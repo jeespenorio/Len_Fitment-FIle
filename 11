@@ -1,0 +1,123 @@
+import pandas as pd
+
+#init data
+data1 = {
+    'Make': ['POLARIS'],
+    'Model': ['All Model'],
+    'Vendor Code': ['NACH'],
+    'Vendor Name': ['NACHMAN INTERNATIONAL CO. LTD'],
+    'Position': ['REAR TRACK'],
+    
+    'MPN': ['LS4-80000R'],
+    
+    'AD LIST NUMBER': ['1121007'],
+    
+    
+}
+
+
+#list all models
+list_models = [
+
+'Freeride E-TEC 800R 137',
+'Freeride E-TEC 800R 146',
+'Freeride E-TEC 800R 154',
+'Freeride E-TEC 850 137',
+'Freeride E-TEC 850 146',
+'Freeride E-TEC 850 154',
+'Freeride E-TEC 850 165',
+'Freeride E-TEC 850 Turbo 154',
+'Freeride E-TEC 850 Turbo 165',
+'Freeride E-TEC 850 Turbo 146',
+'Renegade 600 Backcountry',
+'Renegade 600 Adrenaline',
+'Renegade 600 X',
+'Renegade 800 Backcountry',
+'Renegade 800 Adrenaline',
+'Renegade 800 Backcountry X',
+'Renegade 800 X',
+'Summit 600',
+'Summit 600 R Sport',
+'Summit 600 Sport',
+'Summit 600 Adrenaline',
+'Summit 600 X',
+'Summit 600 X 154',
+'Summit 600 Everest 146',
+'Summit 600 Everest',
+'Summit 800 R Everest',
+'Summit 800 X 144',
+'Summit 800 XRS 151',
+'Summit 800 X',
+'Summit 800 Highmark',
+'Summit 800 Highmark X',
+'Summit 800 Foothill',
+'Summit 800',
+'Summit 800 Sport',
+'Summit 800 R Sport',
+'Summit 800 R X',
+'Summit 800 R Highmark X',
+'Summit 800 R Highmark',
+'Summit 800 Adrenaline 144',
+'Summit 800 Highmark Xtreme',
+'Summit 800 Adrenaline 151',
+'Summit 800 X 163',
+'Summit 800 X 154',
+'Summit 800 Hill Climb',
+'Summit 800 Everest 163',
+'Summit 800 Everest 154',
+'Summit 800 Everest 146',
+'Summit 800 X 146',
+'Summit 800 XRS 159',
+'Summit 800 X 151',
+'Summit 800 X 159',
+'Summit 800 R 50th Anniversary',
+'Summit X E-TEC 850 154',
+'Summit X E-TEC 850 165',
+'Summit SP E-TEC 850 154',
+'Summit SP E-TEC 850 165',
+'Summit X E-TEC 850 175',
+'Summit SP E-TEC 850 146',
+'Summit SP E-TEC 850 175',
+'Summit X with Expert Package E-TEC 850 154',
+'Summit X with Expert Package E-TEC 850 165',
+'Summit X E-TEC 850 Turbo 154',
+'Summit X E-TEC 850 Turbo 165',
+'Summit X with Expert Package E-TEC 850 175',
+'Summit X with Expert Package E-TEC 850 Turbo 154',
+'Summit X with Expert Package E-TEC 850 Turbo 165',
+'Summit X with Expert Package E-TEC 850 Turbo 175',
+'Summit X w/ Expert Package E-TEC 850 Turbo 154 2.5',
+'Summit Edge E-TEC 850 175',
+'Summit Edge E-TEC 850 154',
+'Summit X with Expert Package E-TEC 850 154 2.5',
+'Summit Edge E-TEC 850 165',
+'Summit X E-TEC 850 Turbo R 154',
+'Summit X E-TEC 850 Turbo R 165',
+'Summit X with Expert Package E-TEC 850 Turbo R 154',
+'Summit X with Expert Package E-TEC 850 Turbo R 165',
+'Summit X with Expert Package E-TEC 850 Turbo R 175'
+
+
+]
+
+#Range of Years
+years = list(range(2015, 2024))
+
+#Functions/Syntax to generate the Dataframe for each model
+
+def generate_df(model, data, year):
+    data_copy = data.copy()
+    data_copy['Model'] = model
+    data_copy['Year'] = year
+    return pd.DataFrame(data_copy)
+
+dfs=[]
+for year in years:
+    df1 = pd.concat([generate_df(model,data1, year) for model in list_models], ignore_index = True)
+    dfs.append(df1)
+    
+#Concatenate all DF's created
+final_df = pd.concat(dfs, ignore_index=True)
+
+#Display
+final_df
