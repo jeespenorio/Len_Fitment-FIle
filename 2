@@ -1,0 +1,51 @@
+import pandas as pd
+
+#init data
+data1 = {
+    'Make': ['ARCTIC CAT'],
+    'Model': ['All Model'],
+    'Vendor Code': ['NACH'],
+    'Vendor Name': ['NACHMAN INTERNATIONAL CO. LTD'],
+    'Position': ['FRONT TRACK'],
+    
+    'MPN': ['LS4-11000F'],
+    
+    'AD LIST NUMBER': ['1121001'],
+    
+    
+}
+
+
+#list all models
+list_models = [
+
+'Riot 8000 1.6in.',
+'Riot 8000 1.35in.',
+'Riot 8000 ATAC 1.6in.',
+'Riot 8000 ATAC',
+'Riot 8000'
+
+
+]
+
+#Range of Years
+years = list(range(2020, 2024))
+
+#Functions/Syntax to generate the Dataframe for each model
+
+def generate_df(model, data, year):
+    data_copy = data.copy()
+    data_copy['Model'] = model
+    data_copy['Year'] = year
+    return pd.DataFrame(data_copy)
+
+dfs=[]
+for year in years:
+    df1 = pd.concat([generate_df(model,data1, year) for model in list_models], ignore_index = True)
+    dfs.append(df1)
+    
+#Concatenate all DF's created
+final_df = pd.concat(dfs, ignore_index=True)
+
+#Display
+final_df
