@@ -1,0 +1,125 @@
+import pandas as pd
+
+#init data
+data1 = {
+    'Make': ['ARCTIC CAT'],
+    'Model': ['All Model'],
+    'Vendor Code': ['NACH'],
+    'Vendor Name': ['NACHMAN INTERNATIONAL CO. LTD'],
+    'Position': ['SKI'],
+    
+    'MPN': ['LS8-11000'],
+    
+    'AD LIST NUMBER': ['1121010'],
+    
+    
+}
+
+
+#list all models
+list_models = [
+
+    
+'Pantera 3000',
+'Riot 6000',
+'Riot 6000 1.35in.',
+'Pantera 7000 Limited',
+'Pantera 7000',
+'Pantera 7000 XT Limited',
+'Pantera 6000 ES',
+'ProClimb M 800 HCR',    
+'ProCross F 800 Tucker Hibbert Race Replica',
+'ProCross F 800 Sno Pro RR',
+'ProCross F 800 Sno Pro Limited',
+'ProCross F 800 Sno Pro',
+'ProCross F 800 LXR',
+'ProCross XF 1100 Turbo Sno Pro 50th',
+'ProCross XF 1100 Turbo Sno Pro Limited',
+'ProCross XF 1100 Turbo Sno Pro',
+'ProCross XF 1100 Turbo LXR',
+'ProCross XF 1100 Sno Pro 50th',
+'ProCross XF 1100 Sno Pro Limited',
+'ProCross XF 1100 Sno Pro',
+'ProCross XF 1100 LXR',
+'ProCross XF 1100 Turbo Crosstour',
+'ProCross XF 1100 Crosstour',
+'XF 8000 Sno Pro',
+'XF 8000 LXR',
+'XF 8000 Limited',
+'XF 8000 High Country Limited',
+'XF 8000 High Country',
+'XF 8000 Crosstrek',
+'XF 8000 Crosstour',
+'XF 8000 Cross Country Sno Pro',
+'XF 7000 LXR',
+'XF 7000 Sno Pro',
+'XF 7000 Limited',
+'XF 7000 Crosstour',
+'XF 7000 Cross Country Sno Pro',
+'XF 8000 Cross Country Limited',
+'XF 8000 Cross Country',
+'XF 9000 High Country Limited',
+'XF 9000 High Country Sno Pro',
+'XF 9000 Crosstour',
+'XF 9000 Cross Country Sno Pro',
+'XF 9000 LXR',
+'XF 9000 Sno Pro',
+'XF 9000 Limited',
+'XF 6000 LXR',
+'XF 6000 Sno Pro',
+'XF 6000 Limited',
+'XF 6000 Crosstour',
+'XF 6000 Cross Country',
+'XF 6000 High Country',
+'XF 7000 Cross Country',
+'XF 7000 High Country',
+'ProCross XF 800 Crosstour',
+'XF 9000 Cross Country',
+'XF 9000 High Country',
+'XF 9000 Cross Country Limited',
+'XF 6000 Crosstrek',
+'XF 7000 Crosstrek',
+'XF 9000 Crosstrek',
+'ZR 5000 LXR',
+'ZR 6000 El Tigre',
+'ZR 6000 El Tigre ES',
+'ZR 7000 LXR 129',
+'ZR 7000 Sno Pro 129',
+'ZR 7000 Limited 129',
+'ZR 6000 RR',
+'ZR 6000 LXR 129',
+'ZR 6000 Sno Pro 129',
+'ZR 6000 Limited 129',
+'ZR 6000 Tucker Hibbert RR',
+'ZR 7000 El Tigre',
+'ZR 7000 RR',
+'ZR 6000 LXR 137',
+'ZR 6000 Sno Pro 137',
+'ZR 6000 Limited 137',
+'ZR 7000 LXR 137',
+'ZR 7000 Sno Pro 137',
+'ZR 7000 Limited 137'
+
+]
+
+#Range of Years
+years = list(range(2012, 2022))
+
+#Functions/Syntax to generate the Dataframe for each model
+
+def generate_df(model, data, year):
+    data_copy = data.copy()
+    data_copy['Model'] = model
+    data_copy['Year'] = year
+    return pd.DataFrame(data_copy)
+
+dfs=[]
+for year in years:
+    df1 = pd.concat([generate_df(model,data1, year) for model in list_models], ignore_index = True)
+    dfs.append(df1)
+    
+#Concatenate all DF's created
+final_df = pd.concat(dfs, ignore_index=True)
+
+#Display
+final_df
