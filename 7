@@ -1,0 +1,86 @@
+import pandas as pd
+
+#init data
+data1 = {
+    'Make': ['POLARIS'],
+    'Model': ['All Model'],
+    'Vendor Code': ['NACH'],
+    'Vendor Name': ['NACHMAN INTERNATIONAL CO. LTD'],
+    'Position': ['REAR TRACK'],
+    
+    'MPN': ['LS4-50000R'],
+    
+    'AD LIST NUMBER': ['1121004'],
+    
+    
+}
+
+
+#list all models
+list_models = [
+
+    '600 SwitchBack Assault 144',
+'600 SwitchBack',
+'600 Dragon SwitchBack',
+'600 HO CFI SwitchBack',
+'600 SwitchBack Adventure',
+'600 SwitchBack PRO-R',
+'600 SwitchBack PRO-S',
+'600 SwitchBack SP 144',
+'600 SwitchBack XCR',
+'650 SwitchBack Assault 146',
+'650 SwitchBack XC 146',
+'650 SwitchBack SP 146',
+'800 Rush PRO-R',
+'800 Rush',
+'800 Rush PRO-R LE',
+'800 Rush PRO-X',
+'800 Rush PRO-S',
+'800 Rush PRO-S LE',
+'800 Rush XCR',
+'800 SKS',
+'800 SKS 155',
+'800 SKS 146',
+'800 SwitchBack',
+'800 SwitchBack Assault 144',
+'800 SwitchBack PRO-R',
+'800 SwitchBack Adventure',
+'800 SwitchBack PRO-R LE',
+'800 SwitchBack Assault LE',
+'800 SwitchBack PRO-X',
+'800 SwitchBack PRO-S',
+'800 SwitchBack Assault 144 TD Series LE',
+'800 SwitchBack PRO-S LE',
+'800 SwitchBack XCR',
+'850 SwitchBack Assault 144',
+'850 SwitchBack PRO-S',
+'850 SwitchBack XCR',
+'850 SwitchBack Assault 146',
+'850 SwitchBack XC 146',
+'850 SKS 155',
+'850 SKS 146'
+
+
+]
+
+#Range of Years
+years = list(range(2017, 2022))
+
+#Functions/Syntax to generate the Dataframe for each model
+
+def generate_df(model, data, year):
+    data_copy = data.copy()
+    data_copy['Model'] = model
+    data_copy['Year'] = year
+    return pd.DataFrame(data_copy)
+
+dfs=[]
+for year in years:
+    df1 = pd.concat([generate_df(model,data1, year) for model in list_models], ignore_index = True)
+    dfs.append(df1)
+    
+#Concatenate all DF's created
+final_df = pd.concat(dfs, ignore_index=True)
+
+#Display
+final_df
