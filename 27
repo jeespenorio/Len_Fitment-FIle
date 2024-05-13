@@ -1,0 +1,72 @@
+import pandas as pd
+
+#init data
+data1 = {
+    'Make': ['SKI-DOO'],
+    'Model': ['All Model'],
+    'Vendor Code': ['NACH'],
+    'Vendor Name': ['NACHMAN INTERNATIONAL CO. LTD'],
+    'Position': ['FRONT TRACK'],
+    
+    'MPN': ['LS4-80001F'],
+    
+    'AD LIST NUMBER': ['1121008'],
+    
+    
+}
+
+
+#list all models
+list_models = [
+
+'MX Z Blizzard E-TEC 600 HO',
+'MX Z Blizzard E-TEC 800R',
+'MX Z Blizzard ACE 900',
+'MX Z Blizzard 4-TEC 1200',
+'MX Z Blizzard E-TEC 850',
+'MX Z Blizzard E-TEC 600R',
+'MX Z TNT 800R Power TEC',
+'MX Z TNT E-TEC 600 HO',
+'MX Z TNT 600 ACE',
+'MX Z TNT E-TEC 800R',
+'MX Z TNT 4-TEC 1200',
+'MX Z TNT 600 Carb',
+'MX Z TNT ACE 900',
+'MX Z TNT E-TEC 850',
+'MX Z TNT E-TEC 600R',
+'MX Z X-RS E-TEC 800R',
+'MX Z X-RS 800R',
+'MX Z X E-TEC 800R',
+'MX Z X-RS E-TEC 600 HO',
+'MX Z X 4-TEC 1200',
+'MX Z X E-TEC 600 HO',
+'MX Z X-RS 600',
+'MX Z X E-TEC 850',
+'MX Z X-RS Iron Dog E-TEC 600 HO',
+'MX Z X-RS E-TEC 850',
+'MX Z X E-TEC 600R',
+'MX Z X-RS E-TEC 600R'
+
+]
+
+#Range of Years
+years = list(range(2015, 2024))
+
+#Functions/Syntax to generate the Dataframe for each model
+
+def generate_df(model, data, year):
+    data_copy = data.copy()
+    data_copy['Model'] = model
+    data_copy['Year'] = year
+    return pd.DataFrame(data_copy)
+
+dfs=[]
+for year in years:
+    df1 = pd.concat([generate_df(model,data1, year) for model in list_models], ignore_index = True)
+    dfs.append(df1)
+    
+#Concatenate all DF's created
+final_df = pd.concat(dfs, ignore_index=True)
+
+#Display
+final_df
